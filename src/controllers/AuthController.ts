@@ -16,7 +16,7 @@ export class AuthController {
             const userExist = await User.findOne({ email })
 
             if (userExist) {
-                const error = new Error('El suario ya esta registrado')
+                const error = new Error('El usuario ya esta registrado')
 
             }
 
@@ -32,7 +32,7 @@ export class AuthController {
             token.user = user.id
 
             //enviar email
-            AuthEmail.sendConfirmation({
+          await  AuthEmail.sendConfirmation({
                 email: user.email,
                 name: user.name,
                 token: token.token
